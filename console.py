@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-
-"""An interactive shell"""
+''' entry  point of the command interpreter '''
 
 import cmd
-from models.engine.__init__ import storage
+from models import storage
 from models.base_model import BaseModel
 
 
@@ -12,7 +11,7 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb)  "
 
-    __cmd = ['create', 'show', 'update', 'all', 'destroy', 'count']
+    ''' __cmd = ['create', 'show', 'update', 'all', 'destroy', 'count']
 
     def precmd(self, arg):
         """parses command input"""
@@ -22,7 +21,7 @@ class HBNBCommand(cmd.Cmd):
             args = cnd[1].split(')')
             if cls[0] in type(self).__classes and cnd[0] in type(self).__cmd:
                 arg = cnd[0] + ' ' + cls[0] + ' ' + args[0]
-        return arg
+        return arg'''
 
     def do_EOF(self, line):
         """EOF signal to exit the program."""
@@ -37,7 +36,7 @@ class HBNBCommand(cmd.Cmd):
         """Do nothing upon receiving an empty line."""
         pass
 
-    def do_create(self, args):
+    '''def do_create(self, args):
         """Creates a new instance of BaseModel
         Args:
             arg(line):  BaseModel command
@@ -191,7 +190,7 @@ class HBNBCommand(cmd.Cmd):
             key_cls = key_split[0]
             if key_cls == args:
                 count = count + 1
-        print(count)
+        print(count)'''
 
 
 if __name__ == "__main__":
