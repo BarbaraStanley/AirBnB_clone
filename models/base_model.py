@@ -4,19 +4,12 @@
 from datetime import datetime
 from uuid import uuid4
 import models
-# from models import storage
 
 
 class BaseModel:
     ''' Base/parent class '''
     def __init__(self, *args, **kwargs):
-        ''' constructor to initialize class 
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
-        print("in here")
-        models.storage.new(self)
-'''
+        ''' constructor to initialize class'''
 
         if kwargs:
             for k, v in kwargs.items():
@@ -27,7 +20,6 @@ class BaseModel:
         self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-        print("in here")
         models.storage.new(self)
 
     def __str__(self):
