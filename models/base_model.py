@@ -3,33 +3,41 @@
 
 from datetime import datetime
 from uuid import uuid4
-from models import storage
+import models
+# from models import storage
 
 
 class BaseModel:
     ''' Base/parent class '''
     def __init__(self, *args, **kwargs):
-        ''' constructor to initialize class '''
+        ''' constructor to initialize class 
         self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-        storage.new(self)
+        print("in here")
+        models.storage.new(self)
+'''
 
         if kwargs:
             for k, v in kwargs.items():
                 if k == "created_at" or k == "updated_at":
                     v = datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f")
-                if k != "__class__":
+                elif k != "__class__":
                     setattr(self, k, v)
+        self.id = str(uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        print("in here")
+        models.storage.new(self)
 
     def __str__(self):
         d = self.__dict__.copy()
-        return "[{}] ({}) <{}>".format(type(self).__name__, self.id, d)
+        return "[{}] ({}) {}".format(type(self).__name__, self.id, d)
 
     def save(self):
         ''' updates the updated_at with the current datetime'''
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         ''' dictionary containing all keys/values of __dict__ of instance '''
